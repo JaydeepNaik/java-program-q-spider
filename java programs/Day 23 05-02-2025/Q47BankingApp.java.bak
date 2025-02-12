@@ -1,0 +1,284 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Iterator;
+class Q47BankingApp 
+{
+	public static void main(String[] args) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		String systemUsername = null;
+		String systemPassword = null;
+		String systemAddress = null;
+		long systemNumber = 0l;
+		double systemBalance = 0.0;
+		//Advance Java Concept Skip It
+		//======================
+		ArrayList <String> al = new ArrayList<String>();
+		String arr ;
+		//======================
+		String statement[] = new String[5];
+		int s = 0;
+		for(;;)
+		{
+			System.out.print("\033[H\033[2J"); 
+			System.out.flush();
+			System.out.println("          \n\nWELCOME TO SLOWEST BANK OF INDIA(SBI)    ");
+			System.out.println("1.EXISTING USER ");
+			System.out.println("2.CREATE NEW ACCOUNT ");
+			System.out.println("3.CLOSE APPLICATION  ");
+			System.out.print("\nENTER CHOICE : ");
+			int opt = sc.nextInt();
+			if(opt==1)
+			{
+				if(systemUsername==null)
+				{
+					System.out.println("\nACCOUNT NOT EXISTS ");
+					System.out.println("FIRST CREATE ACCOUNT");
+					Thread.sleep(2000);
+					continue;
+				}
+				else
+				{
+					System.out.println("ENTER USERNAME : ");
+					String username = sc.next();
+					System.out.println("ENTER PASSWORD : ");
+					String password = sc.next();
+					for(int i=3;i>1;i--)
+					{
+						if(systemUsername.equals(username) && systemPassword.equals(password))
+						{
+							System.out.println("LOGGED IN....");
+							Home:
+							for(;;)
+							{
+								System.out.print("\033[H\033[2J"); 
+								System.out.flush();
+								System.out.println("         \nHOME PAGE      ");
+								System.out.println("1.DEPOSIT");
+								System.out.println("2.WITHDRAW");
+								System.out.println("3.CHECK BALANCE");
+								System.out.println("4.MINI STATEMENTS");
+								System.out.println("5.ALL STATEMENTS");
+								System.out.println("6.LOGOUT");
+								
+								int choice = sc.nextInt();
+								double amt ;
+								switch(choice)
+								{
+									case 1:
+									{
+										System.out.println("ENTER AMOUNT : ");
+										amt = sc.nextDouble();
+										arr=" DEPOSIT : "+amt;
+										statement[s]=arr;
+										al.add(arr);//Advance Java Concept Skip It
+										s++;
+										if (s >= 5)
+										{
+										     s = 0;
+										}			
+										systemBalance += amt;
+										System.out.println("DEPOSIT SUCCESSFUL");
+										Thread.sleep(1000);
+										
+									}break;
+									case 2:
+									{
+										for(int j = 3 ; j>=1 ; j--)
+										{
+											System.out.println("ENTER PASSWORD : ");
+											password = sc.next();
+											
+											Thread.sleep(1000);
+											System.out.println("VERIFYING");
+											Thread.sleep(1000);
+
+											if(systemPassword.equals(password))
+											{
+												System.out.println("VERIFIED :) ");
+												System.out.print("\033[H\033[2J"); 
+												System.out.flush();
+												System.out.println("ENTER AMOUNT : ");
+												amt = sc.nextDouble(); 
+												if(systemBalance>=amt)
+												{
+													systemBalance-=amt;
+													arr=" WITHDRAW : "+amt;
+													statement[s]=arr;	
+													al.add(arr);//Advance Java Concept Skip It
+													s++;
+													if (s >= 5)
+													{
+													     s = 0;
+													}	
+													System.out.print("WITHDRAW SUCCESSFUL");
+													Thread.sleep(1000);
+													continue Home;
+												}
+												else
+												{
+													System.out.print("INSUFFICIENT BALANCE");
+													Thread.sleep(1000);
+													continue Home;
+												}
+											}
+											System.out.println("WRONG PASSWORD");
+											System.out.println("ATTEMPT LEFT "+(j-1));	
+										}
+										System.out.println("MAXIMUM ATTEMP REACHED");
+										System.out.println("PLEASE TRY AGAIN AFTER 24 HOURS");
+										System.exit(0);
+									}break;
+									case 3:
+									{
+										for(int k = 3 ; k>=1 ; k--)
+										{
+											System.out.println("ENTER PASSWORD : ");
+											password = sc.next();
+											
+											Thread.sleep(2000);
+											System.out.println("VERIFYING");
+											Thread.sleep(2000);
+
+											if(systemPassword.equals(password))
+											{
+												System.out.println("VERIFIED");
+												System.out.print("\033[H\033[2J"); 
+												System.out.flush();
+												System.out.println("AVAILABLE BALANCE : "+systemBalance);
+												Thread.sleep(5000);
+												continue Home;
+											}
+											System.out.println("WRONG PASSWORD");
+											System.out.println("ATTEMP LEFT "+(k-1));
+										}	
+									}break;
+									case 4:
+									{
+										for(int l = 3 ; l>=1 ; l--)
+										{
+											
+											System.out.println("ENTER PASSWORD : ");
+											password = sc.next();
+									
+											Thread.sleep(2000);
+											System.out.println("VERIFYING");
+											Thread.sleep(2000);
+
+											if(systemPassword.equals(password))
+											{
+												System.out.println("VERIFIED");
+												System.out.print("\033[H\033[2J"); 
+												System.out.flush();
+												int start = s;  
+												//Collection class Concept : Dynamic Array
+												if(al.size()>5)
+												{
+													for(int x = al.size()-5 ; x < al.size() ; x++)
+													{
+														System.out.println(al.get(x));
+													}
+												}
+												else
+												{
+													for(int y = 0 ; y<arr.size();y++)
+													{
+														System.out.println(al.get(y));
+													}
+												}
+												/*
+												Static Array Concept
+												for (int m = 0; m < 5; m++) 
+												{
+													
+													int index = (start + m) % 5; 
+													if (statement[index] != null) 
+													{
+														System.out.println(statement[index]);
+														Thread.sleep(1000);
+													}
+												}*/
+												Thread.sleep(2000);
+												continue Home;
+											}
+											System.out.println("WRONG PASSWORD");
+											System.out.println("ATTEMPT LEFT "+(l-1));
+										}	
+									}break;
+									case 5://Advance Java Concept Skip It
+									{
+										Iterator itr = al.iterator();
+										while(itr.hasNext())
+										{
+											System.out.println(itr.next());		
+											Thread.sleep(1000);
+										}
+										Thread.sleep(2000);
+									}break;
+									case 6:
+									{
+										System.out.println("THANK YOU FOR USING APP");
+										Thread.sleep(2000);
+										System.exit(0);
+									}
+									default:
+									{
+										System.out.println("INVALID CHOICE");
+										continue;
+									}	
+								}
+							}
+						}
+						System.out.println("      INVALID CREDENTIALS");
+						System.out.println("      ATTEMPT LEFT : "+(i-1));
+						System.out.println("ENTER USERNAME : ");
+						username = sc.next();
+						System.out.println("ENTER PASSWORD : ");
+						password = sc.next();
+					}
+					System.out.println(" YOU IDIOT \n PLEASE GO TO MENTAL ASSAYLUM \n NEVER EVER COME AGAIN");
+					System.exit(0);
+				}
+			}	
+			else if(opt==2)
+			{
+				System.out.println("ENTER USERNAME : ");
+				systemUsername = sc.next();
+
+				System.out.println("ENTER PASSWORD : ");
+				systemPassword = sc.next();
+				sc.nextLine();
+				System.out.println("ENTER ADDRESS : ");
+				systemAddress = sc.nextLine();
+			    
+				System.out.println("ENTER MOBILE NUMBER : ");
+				systemNumber = sc.nextLong();
+		        System.out.println("ENTER AMOUNT : ");
+				systemBalance = sc.nextDouble();
+
+
+				
+				System.out.println("ACCOUNT CREATED SUCCESSFULLY");
+				System.out.println("UserName : "+systemUsername);
+				System.out.println("Password : "+systemPassword);
+				System.out.println("Address  : "+systemAddress);
+				System.out.println("Mobile No: "+systemNumber);
+				System.out.println("Amount   : "+systemBalance);
+				
+				System.out.println("PLEASE LOGIN TO CONTINUE");
+				Thread.sleep(3000);
+
+			}
+			else if(opt==3)
+			{
+				System.out.println("VISIT AGAIN");
+				System.exit(0);
+			}
+			else
+			{
+				System.out.println("INVALID CHOICE");
+			}
+		}
+
+	}
+}

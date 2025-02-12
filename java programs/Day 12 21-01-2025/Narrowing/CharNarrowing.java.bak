@@ -1,0 +1,14 @@
+class CharNarrowing 
+{
+	public static void main(String[] args) 
+	{
+		;
+		char a = 'a';
+		short b =(short) a;
+		System.out.println(b);//?
+		byte g = (byte)a;
+		System.out.println(g);
+
+
+	}
+}

@@ -1,0 +1,15 @@
+class LongWidening 
+{
+	public static void main(String[] args) 
+	{
+		float a = 10.0f ;
+	
+		
+		float f = a;
+		System.out.println("float : "+f);
+		double g = a;
+		System.out.println("double : "+g);
+		//boolean h = a;
+		//System.out.println("booelean : "+h);
+	}
+}

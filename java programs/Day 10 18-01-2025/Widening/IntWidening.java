@@ -1,0 +1,18 @@
+class IntWidening 
+{
+	public static void main(String[] args) 
+	{
+		int a = 10 ;
+	
+		//char d = a ;
+		//System.out.println("char : "+d);
+		long e = a ;
+		System.out.println("long : "+e);
+		float f = a;
+		System.out.println("float : "+f);
+		double g = a;
+		System.out.println("double : "+g);
+		//boolean h = a;
+		//System.out.println("booelean : "+h);
+	}
+}
